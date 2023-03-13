@@ -1,11 +1,29 @@
-from sqlalchemy import create_engine
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import sessionmaker
+import os
+import psycopg2
 
-SQLALCHEMY_DATABASE_URL = 'postgresql://postgres:postgres@localhost:5432/northwind'
+from dotenv import load_dotenv
 
-engine = create_engine(SQLALCHEMY_DATABASE_URL)
+load_dotenv()
 
-SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
-Base = declarative_base()
+def get_data_from_db():
+    conn = psycopg2.connect(
+        host=os.getenv('POSTGRES_HOST'),
+        database=os.getenv('POSTGRES_DATABASE'),
+        user=os.getenv('POSTGRES_USER'),
+        password=os.getenv('POSTGRES_PASSWORD')
+    )
+    cur = conn.cursor()
+    try:
+        cur.execute("""
+            SELECT order_id, customer_id, contact_name
+            FROM orders
+            JOIN customers USING (customer_id)
+            LIMIT 10
+            """)
+    except psycopg2.Error as e:
+        return e.diag.message_primary
+    data = cur.fetchall()
+    cur.close()
+    conn.close()
+    return data
