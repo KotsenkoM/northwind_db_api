@@ -1,8 +1,8 @@
 from sqlalchemy import Column, Integer, String, Date, Float
-import database
+from src.database import Base
 
 
-class Order(database.Base):
+class Order(Base):
     __tablename__ = 'orders'
 
     order_id = Column(Integer, primary_key=True, index=True)
