@@ -11,8 +11,8 @@ class OrderBase(BaseModel):
 
 
 class Order(OrderBase):
-    ship_name: str
-    # customer_id: int
+    # ship_name: str
+    customer_id: str
     # employee_id: int
     # customer_id: str
     # employee_id: int
@@ -28,3 +28,13 @@ class Order(OrderBase):
     # ship_postal_code: str
     # ship_country: str
 
+
+class CustomerBase(BaseModel):
+    customer_id: str
+
+    class Config:
+        orm_mode = True
+
+
+class Customer(CustomerBase):
+    customer_id: str

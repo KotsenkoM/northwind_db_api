@@ -4,7 +4,7 @@ from sqlalchemy.orm import DeclarativeBase, sessionmaker
 
 load_dotenv()
 
-SQLALCHEMY_DATABASE_URL = "postgresql://postgres:postgres@localhost/northwind"
+SQLALCHEMY_DATABASE_URL = 'postgresql://postgres:postgres@localhost/northwind'
 
 engine = create_engine(SQLALCHEMY_DATABASE_URL)
 
