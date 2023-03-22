@@ -6,9 +6,9 @@ from sqlalchemy.orm import relationship
 class Order(Base):
     __tablename__ = 'orders'
 
-    order_id = Column(Integer, primary_key=True, index=True)
+    order_id = Column(Integer, primary_key=True)
     customer_id = Column(String, primary_key=True)
-    employee_id = Column(Integer, index=True)
+    employee_id = Column(Integer)
     order_date = Column(Date)
     required_date = Column(Date)
     shipped_date = Column(Date)
@@ -21,22 +21,22 @@ class Order(Base):
     ship_postal_code = Column(String)
     ship_country = Column(String)
 
-    items = relationship('Customer', back_populates='owner')
+    # items = relationship('Customer', back_populates='owner')
 
 
-class Customer(Base):
-    __tablename__ = 'customers'
-
-    customer_id = Column(String, ForeignKey('orders.customer_id'))
-    company_name = Column(String)
-    contact_name = Column(String)
-    contact_title = Column(String)
-    address = Column(String)
-    city = Column(String)
-    region = Column(String)
-    postal_code = Column(String)
-    country = Column(String)
-    phone = Column(String)
-    fax = Column(String)
-
-    owner = relationship('Order', back_populates='items')
+# class Customer(Base):
+#     __tablename__ = 'customers'
+#
+#     customer_id = Column(String, ForeignKey('orders.customer_id'))
+#     company_name = Column(String)
+#     contact_name = Column(String)
+#     contact_title = Column(String)
+#     address = Column(String)
+#     city = Column(String)
+#     region = Column(String)
+#     postal_code = Column(String)
+#     country = Column(String)
+#     phone = Column(String)
+#     fax = Column(String)
+#
+#     # owner = relationship('Order', back_populates='items')
