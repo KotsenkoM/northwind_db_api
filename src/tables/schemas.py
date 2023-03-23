@@ -20,4 +20,4 @@ class CustomerBase(BaseModel):
 
 
 class Customer(CustomerBase):
-    customer_id: str
+    company_name: str

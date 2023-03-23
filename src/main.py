@@ -18,6 +18,7 @@ def get_db():
 
 @app.get('/orders/', response_model=list[schemas.OrderBase])
 def read_orders(db: Session = Depends(get_db)):
+    '''Отобразить все заказы'''
     orders = crud.get_orders(db)
     return orders
 
@@ -28,3 +29,17 @@ def read_order(order_id: int, db: Session = Depends(get_db)):
     if db_order is None:
         raise HTTPException(status_code=404, detail="Order not found")
     return db_order
+
+
+@app.get('/customers/', response_model=list[schemas.CustomerBase])
+def read_orders(db: Session = Depends(get_db)):
+    customers = crud.get_customers(db)
+    return customers
+
+
+@app.get('/customers/{customer_id}', response_model=schemas.Customer)
+def read_order(customer_id: str, db: Session = Depends(get_db)):
+    db_customer = crud.get_customer(db, customer_id=customer_id)
+    if db_customer is None:
+        raise HTTPException(status_code=404, detail="Customer not found")
+    return db_customer
