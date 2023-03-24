@@ -1,6 +1,6 @@
-from sqlalchemy import Column, Integer, String, Date, Float, ForeignKey
+from sqlalchemy import Column, ForeignKey
 from src.database import Base
-from sqlalchemy.orm import relationship, Mapped, mapped_column
+from sqlalchemy.orm import relationship
 
 
 class Order(Base):
@@ -27,16 +27,16 @@ class Order(Base):
 class Customer(Base):
     __tablename__ = 'customers'
 
-    customer_id = Column(String, primary_key=True)
-    company_name = Column(String)
-    contact_name = Column(String)
-    contact_title = Column(String)
-    address = Column(String)
-    city = Column(String)
-    region = Column(String)
-    postal_code = Column(String)
-    country = Column(String)
-    phone = Column(String)
-    fax = Column(String)
+    customer_id = Column('customer_id', primary_key=True)
+    company_name = Column('company_name')
+    contact_name = Column('contact_name')
+    contact_title = Column('contact_title')
+    address = Column('address')
+    city = Column('city')
+    region = Column('region')
+    postal_code = Column('postal_code')
+    country = Column('country')
+    phone = Column('phone')
+    fax = Column('fax')
 
     owner = relationship('Order', back_populates='items')
