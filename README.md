@@ -1,3 +1,3 @@
 # northwind_db_api
-### API on FastAPI framework using psycopg2 for test northwind database on PostgreSQL
 
+### API разрабатывается с целью изучения SQLalchemy для дальнейшшего применения в рабочих и pet проектах.
